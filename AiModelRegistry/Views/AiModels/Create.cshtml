@@ -1,0 +1,72 @@
+﻿@model AiModelRegistry.Models.AiModel
+
+@{
+    ViewData["Title"] = "Add New Model";
+}
+
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow">
+                <div class="card-header bg-primary text-white">
+                    <h4>🤖 Add New AI Model</h4>
+                </div>
+                <div class="card-body">
+                    <form asp-action="Create">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                        <div class="mb-3">
+                            <label asp-for="ModelName" class="form-label fw-bold"></label>
+                            <input asp-for="ModelName" class="form-control" placeholder="e.g. GPT-Sentiment-v1" />
+                            <span asp-validation-for="ModelName" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Version" class="form-label fw-bold"></label>
+                            <input asp-for="Version" class="form-control" placeholder="e.g. 1.0.0" />
+                            <span asp-validation-for="Version" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Algorithm" class="form-label fw-bold"></label>
+                            <input asp-for="Algorithm" class="form-control" placeholder="e.g. Transformer, Random Forest" />
+                            <span asp-validation-for="Algorithm" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Accuracy" class="form-label fw-bold"></label>
+                            <input asp-for="Accuracy" class="form-control" placeholder="e.g. 94.2" />
+                            <span asp-validation-for="Accuracy" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Status" class="form-label fw-bold"></label>
+                            <select asp-for="Status" class="form-select">
+                                <option value="">-- Select Status --</option>
+                                <option value="Production">Production</option>
+                                <option value="Experimental">Experimental</option>
+                                <option value="Deprecated">Deprecated</option>
+                            </select>
+                            <span asp-validation-for="Status" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Description" class="form-label fw-bold"></label>
+                            <textarea asp-for="Description" class="form-control" rows="3" placeholder="Brief description of this model..."></textarea>
+                            <span asp-validation-for="Description" class="text-danger"></span>
+                        </div>
+
+                        <div class="d-flex justify-content-between">
+                            <a asp-action="Index" class="btn btn-secondary">← Back</a>
+                            <button type="submit" class="btn btn-primary">Save Model</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
